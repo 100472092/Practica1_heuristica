@@ -1,26 +1,29 @@
 #
 # Giapetto's problem
 #
-# This finds the optimal solution for maximizing Giapetto's profit
+# This finds the optimal solution for maximizing Giapitto's profit
 #
 
-/* set of toys */
+
 set PARKING;
 set DISTRITO;
+
 /* parameters */
-param Tiempo_parking_distrito {i in PARKING}{j in DISTRITO};
+param Tiempo_parking_distrito {i in PARKING}{j in DISTRITO}; /*tiempo parking i -> distrito j*/
 param Total_llamadas_distrito {j in DISTRITO};
-param max_horas_parking 
+param Max_llamadas_parking {i in PARKING}; /* máximo de 10.000 llamadas por parking*/
+param Max_minutes_parking {i in PARKING};
+
 /* decision variables */
-var llamadas_parking {i in PARKING}{j in DISTRITO} >=0; 
+var Llamadas_parking {i in PARKING}{j in DISTRITO} >=0; 
 
 /* objective function */
-minimize: sum{i in TOY} sum{j in DISTRITO} Tiempo_parking_distrito[i][j]*llamadas_parking[i][j];
+minimize: sum{i in PARKING} sum{j in DISTRITO} Tiempo_parking_distrito[i][j] * llamadas_parking[i][j];
 
 /* Constraints */
-s.t. Llamadas : sum{i in DISTRITO} llamadas_parking[i] <= 10000;
-s.t. Tiempo_distrito: sum{i in PARKING} sum {j in DISTRITO} llamadas_parking[i][j] = Total_llamadas_distrito[j];
-s.t. max_llamadas {i in PARKING}{j in DISTRITO}: llamadas_parking[i][j] * (max_horas_parking - Tiempo_parking_distrito[i][j]) >= 0;
-s.t. no_supera_50%_del_resto {i in PARKING}: sum {j in DISTRITO} llamadas_parking[i][j] <= 1.5 * sum{j in DISTRITO} * llamadas_parking[i][j];
+s.t. Llamadas : sum{i in DISTRITO} Llamadas_parking[i] <= Max_llamadas_parking[i];
+s.t. Llamadas_distrito {j in DISTRITO}: sum{i in PARKING}Llamadas_parking[i][j] = Total_llamadas_distrito[j];
+s.t. Max_tiempo_llamadas {i in PARKING}{j in DISTRITO}: Llamadas_parking[i][j] * (Max_minutes_parking[i] - Tiempo_parking_distrito[i][j]) >= 0;
+s.t. No_supera_50_del_resto {i in PARKING, h in PARKING: i<>h}: sum {j in DISTRITO} Llamadas_parking[i][j] <= 1.5 * sum{k in DISTRITO} * Llamadas_parking[h][k];
 
 end;
