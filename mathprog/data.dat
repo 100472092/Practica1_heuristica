@@ -1,0 +1,37 @@
+data;
+set DISTRITO := D1 D2 D3 D4 D5;
+set PARKING := L1 L2 L3;
+
+param Tiempo_parking_distrito :=
+    L1 D1 20
+    L1 D2 30
+    L1 D3 50
+    L1 D4 15
+    L1 D5 32
+    L2 D1 15
+    L2 D2 18
+    L2 D3 30
+    L2 D4 12
+    L2 D5 15
+    L3 D1 34
+    L3 D2 20
+    L3 D3 14
+    L3 D4 30
+    L3 D5 18;
+
+param Total_llamadas_distrito :=
+    D1 5000
+    D2 6500
+    D3 5400
+    D4 7500
+    D5 5500;
+
+param Max_llamadas_parking :=
+    L1 10000
+    L2 10000
+    L3 10000;
+
+param Max_minutes_parking :=
+    L1 35
+    L2 35
+    L3 35;
