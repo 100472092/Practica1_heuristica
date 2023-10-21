@@ -2,6 +2,9 @@ data;
 set DISTRITO := D1 D2 D3 D4 D5;
 set PARKING := L1 L2 L3;
 
+param Max_minutes_parking := 35;
+param Exceso := 1.5;
+
 param Tiempo_parking_distrito :=
     L1 D1 20
     L1 D2 30
@@ -30,8 +33,3 @@ param Max_llamadas_parking :=
     L1 10000
     L2 10000
     L3 10000;
-
-param Max_minutes_parking :=
-    L1 35
-    L2 35
-    L3 35;
