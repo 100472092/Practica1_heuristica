@@ -1,4 +1,4 @@
-Problem:    modelopractica1
+Problem:    part
 Rows:       30
 Columns:    15
 Non-zeros:  120
