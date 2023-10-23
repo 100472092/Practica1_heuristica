@@ -8,6 +8,7 @@ param Exceso := 1.5; # cada parking no puede exceder en 1.5 veces las llamadas a
 param Cota_inf := 0.1; # un parking debe acoger el 10% de las llamadas de un distrito (si acoge alguna)
 param Percent_max := 0.75; # porcentaje máximo de llamadas que puede acoger un parking
 param Max_minutes_parking := 35; # Tiempo máximo que puede tardar un parking en atender una llamada. 
+param Max_llamadas_parking := 10000;
 
 param Tiempo_parking_distrito :=
     L1 D1 20
@@ -48,13 +49,6 @@ param Total_llamadas_distrito :=
     D4 7500
     D5 5500;
 
-param Max_llamadas_parking :=
-    L1 10000
-    L2 10000
-    L3 10000
-    L4 10000
-    L5 10000
-    L6 10000;
 
 param Coste_nuevo_parking := 
     L4 50000

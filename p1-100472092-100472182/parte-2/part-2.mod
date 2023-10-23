@@ -9,9 +9,9 @@ set DISTRITO;
 /* parameters */
 param Tiempo_parking_distrito {i in PARKING, j in DISTRITO}; /*tiempo parking i -> distrito j*/
 param Total_llamadas_distrito {j in DISTRITO};
-param Max_llamadas_parking {i in PARKING}; /* máximo de 7.500 llamadas por parking*/
 param Coste_nuevo_parking {k in PARKINGS_CANDIDATOS};
 param Coste_minuto_llamada {i in PARKING};
+param Max_llamadas_parking; /* máximo de llamadas por parking*/
 param M;
 param Exceso;
 param Cota_inf;
@@ -29,8 +29,8 @@ var Seleccion_parking_k {i in PARKINGS_CANDIDATOS} binary;
 minimize coste: sum{i in PARKING, j in DISTRITO} (Tiempo_parking_distrito[i, j]*Coste_minuto_llamada[i]*Llamadas_parking[i, j]) + sum{k in PARKINGS_CANDIDATOS}(Seleccion_parking_k[k]*Coste_nuevo_parking[k]);
 
 /* Constraints */
-s.t. Llamadas {i in PARKING}: sum{j in DISTRITO} Llamadas_parking[i, j] <= Max_llamadas_parking[i]; /*llamadas <= 10000*/
-s.t. Redistribucion_distrito {i in PARKING, j in DISTRITO}: Llamadas_parking[i, j] <= Percent_max*Max_llamadas_parking[i]; /*Un parking no puede acoger más de 7500 llamadas de un distrito*/
+s.t. Llamadas {i in PARKING}: sum{j in DISTRITO} Llamadas_parking[i, j] <= Max_llamadas_parking; /*llamadas <= 10000*/
+s.t. Redistribucion_distrito {j in DISTRITO: Total_llamadas_distrito[j] > Percent_max*Max_llamadas_parking}: sum{i in PARKING} Parking_i_acoge_llamadas_j[i, j] >= 2; /*Un parking no puede acoger más de 7500 llamadas de un distrito*/
 s.t. Llamadas_distrito {j in DISTRITO}: sum{i in PARKING}Llamadas_parking[i, j] = Total_llamadas_distrito[j]; /*\sum_i lij = Li*/
 s.t. Max_tiempo_llamadas {i in PARKING, j in DISTRITO}: Llamadas_parking[i, j] * (Max_minutes_parking - Tiempo_parking_distrito[i, j]) >= 0; /*lij(35 - tij) >= 0*/
 s.t. No_supera_50_del_resto_existentes {i in PARKING, h in PARKING_EXISTENTES: i<>h}: sum {j in DISTRITO} Llamadas_parking[i, j] <= Exceso * sum{k in DISTRITO} Llamadas_parking[h, k]; /*\sum_j lij <= 1.5 sum_k lik*/
