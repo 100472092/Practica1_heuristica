@@ -1,0 +1,29 @@
+data;
+set DISTRITO := D1 D2;
+set PARKING_EXISTENTES := L1;
+set PARKINGS_CANDIDATOS := L6;
+
+param M := 10000000; #valor suficientemente grande. 
+param Exceso := 1.5; # cada parking no puede exceder en 1.5 veces las llamadas acogidas por otro 
+param Cota_inf := 0.1; # un parking debe acoger el 10% de las llamadas de un distrito (si acoge alguna)
+param Percent_max := 0.75; # porcentaje máximo de llamadas que puede acoger un parking
+param Max_minutes_parking := 33; # Tiempo máximo que puede tardar un parking en atender una llamada. 
+param Max_llamadas_parking := 1000;
+
+param Tiempo_parking_distrito :=
+    L1 D1 20
+    L1 D2 30
+    L6 D1 55
+    L6 D2 35;
+
+param Total_llamadas_distrito :=
+    D1 100
+    D2 500;
+
+
+param Coste_nuevo_parking := 
+    L6 10000;
+
+param Coste_minuto_llamada := 
+    L1 2
+    L6 2;

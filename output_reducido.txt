@@ -1,0 +1,87 @@
+Problem:    part
+Rows:       24
+Columns:    9 (9 integer, 5 binary)
+Non-zeros:  53
+Status:     INTEGER OPTIMAL
+Objective:  coste = 34000 (MINimum)
+
+   No.   Row name        Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 coste                   34000                             
+     2 Llamadas[L1]              600                        1000 
+     3 Llamadas[L6]                0                        1000 
+     4 Llamadas_distrito[D1]
+                                 100           100             = 
+     5 Llamadas_distrito[D2]
+                                 500           500             = 
+     6 Max_tiempo_llamadas[L1,D1]
+                                1300            -0               
+     7 Max_tiempo_llamadas[L1,D2]
+                                1500            -0               
+     8 Max_tiempo_llamadas[L6,D1]
+                                   0            -0               
+     9 Max_tiempo_llamadas[L6,D2]
+                                   0            -0               
+    10 No_supera_50_del_resto_existentes[L6,L1]
+                                -900                          -0 
+    11 No_supera_50_del_resto_candidatos[L1,L6]
+                                 600                       1e+07 
+    12 Condicion_acoger_llamadas[L1,D1]
+                                 100                          -0 
+    13 Condicion_acoger_llamadas[L1,D2]
+                         -9.9995e+06                          -0 
+    14 Condicion_acoger_llamadas[L6,D1]
+                                   0                          -0 
+    15 Condicion_acoger_llamadas[L6,D2]
+                                   0                          -0 
+    16 Condicion_acoger_llamadas2[L1,D1]
+                                 100            -0               
+    17 Condicion_acoger_llamadas2[L1,D2]
+                                 499            -0               
+    18 Condicion_acoger_llamadas2[L6,D1]
+                                   0            -0               
+    19 Condicion_acoger_llamadas2[L6,D2]
+                                   0            -0               
+    20 Cota_minima[L1,D1]
+                                 100            -0               
+    21 Cota_minima[L1,D2]
+                                 450            -0               
+    22 Cota_minima[L6,D1]
+                                   0            -0               
+    23 Cota_minima[L6,D2]
+                                   0            -0               
+    24 Condicion_existencia[L6]
+                                   0                          -0 
+
+   No. Column name       Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 Llamadas_parking[L1,D1]
+                    *            100             0               
+     2 Llamadas_parking[L1,D2]
+                    *            500             0               
+     3 Llamadas_parking[L6,D1]
+                    *              0             0               
+     4 Llamadas_parking[L6,D2]
+                    *              0             0               
+     5 Parking_i_acoge_llamadas_j[L1,D1]
+                    *              0             0             1 
+     6 Parking_i_acoge_llamadas_j[L1,D2]
+                    *              1             0             1 
+     7 Parking_i_acoge_llamadas_j[L6,D1]
+                    *              0             0             1 
+     8 Parking_i_acoge_llamadas_j[L6,D2]
+                    *              0             0             1 
+     9 Seleccion_parking_k[L6]
+                    *              0             0             1 
+
+Integer feasibility conditions:
+
+KKT.PE: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err = 1.00e+02 on row 12
+        max.rel.err = 1.00e+02 on row 12
+        SOLUTION IS INFEASIBLE
+
+End of output
